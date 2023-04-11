@@ -1,3 +1,9 @@
+import Hangman from "./game/Hangman";
+
 export default function Game() {
-  return <h2>Game</h2>;
+  return (
+    <>
+      <Hangman numLives={0} />
+    </>
+  );
 }
