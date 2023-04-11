@@ -9,7 +9,7 @@ import hang6 from "../../assets/images/hang6.png";
 
 export default function Hangman({ numLives }) {
   const hangmans = [hang0, hang1, hang2, hang3, hang4, hang5, hang6];
-  return <StyledImage src={hangmans[numLives]} />;
+  return <StyledImage src={hangmans[numLives]} alt={`forca com ${6 - numLives} erro(s)`} />;
 }
 
 const StyledImage = styled.img`
