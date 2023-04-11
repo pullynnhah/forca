@@ -1,7 +1,20 @@
+import styled from "styled-components";
+import Game from "./components/Game";
+import Guess from "./components/Guess";
+import Letters from "./components/Letters";
+
 export default function App() {
   return (
-    <>
-      <h1>Forca</h1>
-    </>
+    <StyledContainer>
+      <Game />
+      <Letters />
+      <Guess />
+    </StyledContainer>
   );
 }
+
+const StyledContainer = styled.div`
+  width: 1025px;
+  margin: 59px auto;
+  padding: 0 38px;
+`;
