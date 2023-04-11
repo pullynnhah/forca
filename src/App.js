@@ -61,6 +61,7 @@ export default function App() {
 
   function checkGuess(guess) {
     gameOver(guess === secret.normWord || guess === secret.word);
+    setNumLives(0);
   }
 
   return (
