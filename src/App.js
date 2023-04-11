@@ -11,6 +11,7 @@ import Letters from "./components/Letters";
 export default function App() {
   const [numLives, setNumLives] = useState(6);
   const [letters, setLetters] = useState(generateLetters(true));
+  const [isDisabled, setIsDisabled] = useState(true);
   const [secret, setSecret] = useState(null);
   const [display, setDisplay] = useState(null);
   const [color, setColor] = useState(null);
@@ -21,7 +22,6 @@ export default function App() {
 
   function startGame() {
     const word = WORDS[randint(WORDS.length)];
-    console.log(word); // TODO: remove later
     const starterDisplay = [...word].map(_ => " _");
 
     setNumLives(6);
@@ -29,6 +29,7 @@ export default function App() {
     setSecret({ word, normWord: norm(word) });
     setDisplay(starterDisplay);
     setColor("#000");
+    setIsDisabled(false);
   }
 
   function checkLetter(letter) {
@@ -54,14 +55,19 @@ export default function App() {
   function gameOver(isWinner) {
     setDisplay(secret.word);
     setLetters(generateLetters(true));
+    setIsDisabled(true);
     setColor(isWinner ? "#27AE60" : "#F00");
+  }
+
+  function checkGuess(guess) {
+    gameOver(guess === secret.normWord || guess === secret.word);
   }
 
   return (
     <StyledContainer>
       <Game numLives={numLives} startGame={startGame} display={display} color={color} />
       <Letters letters={letters} checkLetter={checkLetter} />
-      <Guess />
+      <Guess checkGuess={checkGuess} isDisabled={isDisabled} />
     </StyledContainer>
   );
 }
